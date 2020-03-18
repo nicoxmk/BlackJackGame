@@ -1,4 +1,4 @@
-//Nico Xia 260770119
+//Nico Mingkun Xia
 #ifndef _BLACKJACK_
 #define _BLACKJACK_
 #include <stdio.h>
