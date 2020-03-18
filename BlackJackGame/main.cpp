@@ -1,4 +1,4 @@
-//Nico Xia 260770119
+//Nico Mingkun Xia 
 #include <stdio.h>
 #include<iostream>
 #include <string> 
@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-    cout<<"\tWelcome to the COMP322 Blackjack Game!"<<endl<<endl;
+    cout<<"\tWelcome to the Blackjack Game!"<<endl<<endl;
     
     BlackJackGame game;
     //the main loop of the game
