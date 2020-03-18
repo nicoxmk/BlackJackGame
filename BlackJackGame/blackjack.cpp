@@ -1,4 +1,4 @@
-//Nico Xia 260770119
+//Nico Mingkun Xia 
 #include <stdio.h>
 #include <vector>
 #include<iostream>
@@ -15,10 +15,9 @@ Card::Card(Rank r,Type t){
 
 Rank Card::getRank(){ return this->aRank; }
 
-
 int Card::getValue(){
     int value;
-    if(this->aRank==JACK || this->aRank==QUEEN || this->aRank==KING){
+    if(this->aRank==TEN || this->aRank==JACK || this->aRank==QUEEN || this->aRank==KING){
         value = 10;
     }
     else{
@@ -29,12 +28,10 @@ int Card::getValue(){
 }
 
 void Card::displayCard(){
-    string rank_str;
-    string type_str;
-    string card_str;
-    if(this->aRank == 'T') rank_str == "10"; 
-    else rank_str = (this->aRank);
+    string rank_str,type_str,card_str;
     type_str = (this->aType);
+    if(this->aRank == 'T') rank_str = "10";
+    else rank_str = (this->aRank);
     card_str = rank_str + type_str;
     cout<<card_str;
 }
@@ -86,17 +83,13 @@ void Deck::populate(){
             (this->deck).push_back(Card(r,t));
         }
     }
-    //cout<<"Deck populated.\n";
 }
 
 void Deck::shuffle(){
-
     random_shuffle((this->deck).begin(),(this->deck).end());
-    //cout<<"Deck shuffled.\n";
 }
 
 Card Deck::deal(){
-    
         Card c = (this->deck).front();
         (this->deck).erase((this->deck).begin());
         return c;
@@ -105,7 +98,6 @@ Card Deck::deal(){
 
 void Deck::clear(){
     (this->deck).clear();
-    //cout<<"Deck cleared.\n";
 }
 
 //--------------AbstractPlayer-------------
@@ -146,6 +138,7 @@ bool ComputerPlayer::isDrawing() const
 
 //--------------BlackJackGame---------------
 void BlackJackGame::play(){
+    srand((unsigned)time(0));
     //create Deck
     m_deck.populate();
     
@@ -160,6 +153,7 @@ void BlackJackGame::play(){
     cout << endl;
     //Player is dealt and open two cards
     HumanPlayer player;
+    player.hand.clear();
     player.hand.add(m_deck.deal());
     player.hand.add(m_deck.deal());
     cout << "Player: ";
@@ -203,6 +197,8 @@ void BlackJackGame::play(){
         else if (dc > dp) player.announce(PLAYER);
         else if (dp == dc) player.announce(TIE);
     }
+    player.hand.clear();
     m_casino.hand.clear();
     m_deck.clear();
 }
+
